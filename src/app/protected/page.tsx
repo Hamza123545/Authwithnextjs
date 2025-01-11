@@ -1,6 +1,8 @@
 'use client';
 
 import { useSession, signIn, signOut } from 'next-auth/react';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ProtectedPage() {
   const { data: session, status } = useSession();
@@ -35,8 +37,8 @@ export default function ProtectedPage() {
         <div className="flex justify-between items-center container mx-auto">
           <h1 className="text-white text-2xl font-bold">My App</h1>
           <div>
-            <a href="/" className="text-white mx-4 hover:underline">Home</a>
-            <a href="/about" className="text-white mx-4 hover:underline">About</a>
+            <Link href="/" className="text-white mx-4 hover:underline">Home</Link>
+            <Link href="/about" className="text-white mx-4 hover:underline">About</Link>
           </div>
         </div>
       </nav>
@@ -48,10 +50,12 @@ export default function ProtectedPage() {
           <p className="text-gray-600 mb-4">Email: {session.user?.email}</p>
           {session.user?.image && (
             <div className="mb-4">
-              <img
+              <Image
                 src={session.user.image}
                 alt="User Avatar"
                 className="w-20 h-20 rounded-full mx-auto border-2 border-gray-300"
+                width={80}  // Set width for image
+                height={80} // Set height for image
               />
             </div>
           )}
